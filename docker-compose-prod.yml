@@ -18,7 +18,7 @@ services:
     restart: always 
 
   app:
-    image: docker pull ghcr.io/aya-soghayyer/express-docker:a7825d6
+    image:  ghcr.io/aya-soghayyer/express-docker:a7825d6
     restart: always
     # container_name: express-docker  
     build: .
