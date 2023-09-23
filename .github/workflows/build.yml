@@ -31,3 +31,16 @@ jobs:
 
     - name: publish docker image 
       run: docker push ghcr.io/aya-soghayyer/express-docker:${{ steps.image_version.outputs.gitsha }}
+
+    - name: configure docker host 
+      uses: khaledez/configure-docker-host@v1
+      with:
+        host: 18.184.43.77
+        user: github
+        ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
+    - name: deploy
+      run: docker compose -f docker-compose-prod.yml up -d 
+    - name: print logs 
+      if: always()
+      run: docker compose logs  
+
